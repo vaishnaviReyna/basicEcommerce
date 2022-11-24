@@ -1,0 +1,16 @@
+body{
+  box-sizing: border-box;
+}
+.header{
+ font-size: var( --XXSmall);
+  display: flex;
+  justify-content: space-between;
+  width:90%;
+  padding: 10px 2px;
+  margin: 0 auto;
+  .usernameStyle{
+    color: var(--blue21);
+    font-weight: bold;
+    
+  }
+}
