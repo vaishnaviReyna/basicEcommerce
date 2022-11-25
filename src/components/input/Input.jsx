@@ -7,7 +7,7 @@ function Input({ label, type, placeholder,names,values,onChange }) {
       <form>
         <div className="form-group d-flex my-2">
           <label  className="mx-2">{label}</label>
-          <input type={type} name={names} value={values} onChange={onChange} placeholder={placeholder} />
+          <input type={type} name={names} value={values} onChange={onChange} placeholder={placeholder} className="w-75" />
         </div>
       </form>
     </div>

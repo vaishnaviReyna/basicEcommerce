@@ -5,16 +5,17 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import Button from "../../components/button/Button";
 import shopingcart from "../../assets/images/shopingcover.png";
 import styles from "./signup.module.scss";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 function Signup() {
   const navigate = useNavigate();
   const [data, setdata] = useState({ name: "", email: "", pass: "" });
   const [Err, setErr] = useState(false);
   const { name, email, pass } = data;
-  const validEmail = new RegExp('^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$');
- const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$');
+  const validEmail = new RegExp(
+    "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
+  );
+  const validPassword = new RegExp("^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$");
 
   const handlechang = (e) => {
     const { name, value } = e.target;
@@ -22,11 +23,10 @@ function Signup() {
   };
 
   const handleSubmit = () => {
-
-    if((!validEmail.test(data.email)) && (!validPassword.test(data.pass))) {
+    if (!validEmail.test(data.email) && !validPassword.test(data.pass)) {
       setErr(true);
-   }
-    if(data.name && data.email && data.pass){
+    }
+    if (data.name && data.email && data.pass) {
       var userInfo = localStorage.getItem("userInfo");
       if (!userInfo) {
         var arr = [];
@@ -37,10 +37,10 @@ function Signup() {
         userInfoArray.push(data);
         localStorage.setItem("userInfo", JSON.stringify(userInfoArray));
       }
-      navigate("/login_page")
+      navigate("/login_page");
     }
   };
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
@@ -61,7 +61,7 @@ function Signup() {
             onChange={handlechang}
             placeholder="Enter your name"
           />
-        
+
           <Input
             label={<FaUserAlt />}
             type="email"
@@ -70,7 +70,7 @@ function Signup() {
             onChange={handlechang}
             placeholder="Enter your email"
           />
-            
+
           <Input
             label={<FaLock />}
             names="pass"
