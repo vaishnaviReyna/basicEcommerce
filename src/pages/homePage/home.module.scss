@@ -28,4 +28,15 @@ body {
   right: 15px;
   background-color: var(--blue21);
   display: flex;
+  color:var(--white1);
+}
+.footer{
+  background-color:var(--blue21);
+  color: var(--white1);
+  padding:10px 15px;
+}
+.footerContain{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

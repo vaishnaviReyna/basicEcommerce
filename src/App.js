@@ -11,7 +11,7 @@ import Themecontext from './pages/Context';
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
+    <div>
     <Routes>
     <Route path="/" element={<Protectroute/>}>
     <Route path="/theam_page" element={<Themecontext/>}/>

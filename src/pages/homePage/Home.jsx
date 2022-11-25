@@ -17,6 +17,7 @@ import { IconContext } from "react-icons";
 import Button from "../../components/button/Button";
 import Cart from "../CartPage/Cart";
 import Themecontext from "../Context";
+import Input from "../../components/input/Input";
 
 function Home() {
   const navigate = useNavigate();
@@ -61,12 +62,13 @@ function Home() {
     }
   };
 
-  console.log(cartItem);
   return (
+
     <div>
       <Themecontext.Provider value={cartItem}>
         <Cart />
       </Themecontext.Provider>
+      {/* header */}
       <div className={styles.header}>
         <div>
           <a href="#" className="text-dark text-decoration-none">
@@ -95,7 +97,7 @@ function Home() {
           </span>
         </div>
       </div>
-
+{/* sub-header */}
       <div className={styles.header}>
         <img src={logo} alt="Logo" height="50px" width="100px" />
         <div>
@@ -209,8 +211,10 @@ function Home() {
                 <p className="card-title">{item.title}</p>
                 <span>Price:</span>
                 <span className="card-text">{item.price}</span>
+                <div className="d-flex justify-content-center ">
                 <Button title="Add to cart" onClick={() => onAdd(item)} />
                 <Button title="Remove to cart" onClick={() => onRemove(item)} />
+                </div>
               </div>
             );
           })}{" "}
@@ -234,6 +238,53 @@ function Home() {
         ) : (
           <></>
         )}
+      </div>
+{/* footer */}
+      <div className={styles.footer}>
+        <div className={styles.footerContain}>
+          <div><h4>ABOUT SHOP</h4>
+          <p>We possess within us two minds. So far<br/>I have written only of the conscious mind.<br/>We further know that the subconscious <br/>has recorded every event.</p>
+          <h6>NEWSLETTER</h6>
+          <hr></hr>
+          <Input
+            type="email"
+            placeholder="Enter your email"
+          />
+          </div> 
+          <div><h4>INFORMATION</h4>
+          <ul>
+            <li>Our Stores</li>
+            <li>About Us</li>
+            <li>Terms and Conditions</li>
+            <li>Privacy Policy</li>
+            <li>Contact Us</li>
+            <li>Returns</li>
+          </ul>
+          </div>
+          <div><h4>MY ACCOUNT</h4>
+          <ul className="text-left">
+									<li><a>My Account</a></li>
+									<li><a>Order History</a></li>
+									<li><a>My Wishlist</a></li>
+									<li><a>Specials</a></li>
+									<li><a>Track Order</a></li>
+									<li><a>Gift Vouchers</a></li>
+									<li><a>My Credit Slips</a></li>
+								</ul></div>
+          <div><h4>GET IN TOUCH WITH US</h4>
+          <p>Philippines, PO Box 6200 Talay st. 65,<br/> SweetPick inc.</p>
+       <div><span> <IoCall /> 126-632-2345</span></div>
+       <div><span> <IoMailSharp /> support@visushop.com</span></div>
+       <h6>FIND US ON</h6>
+       <hr></hr>
+       <span className="border"> <FaFacebookF /></span>
+       <span className="mx-3 border"> <FaTwitter /></span>
+       <span  className="border"> <FaVimeoV /></span>
+          </div>
+      </div>
+      <hr></hr>
+      <p>© 2022 SweetPick clohs Shop | Designed by vaishnavi chauhan
+</p>
       </div>
     </div>
   );
