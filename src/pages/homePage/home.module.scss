@@ -11,6 +11,21 @@ body{
   .usernameStyle{
     color: var(--blue21);
     font-weight: bold;
-    
+    margin: 2px 6px;
   }
+}
+.cardStyle{
+  width:250px;
+  height:330px;
+  margin:20px 10px;
+  border: 1px solid var(--blue21);
+  border-radius: 10px;
+  position: relative;
+}
+.billingStyle{
+  position: absolute;
+  top:90px;
+  right:15px;
+  background-color: var(--blue21);
+  display: flex;
 }
