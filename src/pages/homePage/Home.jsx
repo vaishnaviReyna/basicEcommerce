@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./home.module.scss";
 import {
@@ -15,11 +15,17 @@ import slider2 from "../../assets/images/slider2.png";
 import slider3 from "../../assets/images/slider3.webp";
 import { IconContext } from "react-icons";
 import Button from "../../components/button/Button";
-import Cart from "../CartPage/Cart";
-import Themecontext from "../Context";
 import Input from "../../components/input/Input";
+import {getposts,deleteposts} from "../../redux/action/Action"
+import { useDispatch, useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 
 function Home() {
+
+  const  dispatch =useDispatch();
+  const posts = useSelector((state)=>state.Reducer.posts)
+  console.log(posts);
+
   const navigate = useNavigate();
   const currntLogin = JSON.parse(localStorage.getItem("currntLogin"));
   const [data, setData] = useState([]);
@@ -31,9 +37,11 @@ function Home() {
     navigate("/login_page");
   };
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setData(json));
+    dispatch(getposts( ))
+    // fetch("https://fakestoreapi.com/products")
+    //   .then((res) => res.json())
+    //   .then((json) => setData(json));
+     
   }, []);
 
   const onAdd = (item) => {
@@ -61,13 +69,11 @@ function Home() {
       SetcartItem(newCartItems);
     }
   };
-
+console.log("posts",posts);
   return (
 
     <div>
-      <Themecontext.Provider value={cartItem}>
-        <Cart />
-      </Themecontext.Provider>
+        
       {/* header */}
       <div className={styles.header}>
         <div>
@@ -123,6 +129,13 @@ function Home() {
             >
               {cartItem.length}
             </button>
+{/* for new pages */}
+            <button
+              onClick={() =>navigate("/cart_page")}
+            >
+              {cartItem.length}
+            </button>
+
           </div>
         </IconContext.Provider>
       </div>
@@ -193,11 +206,11 @@ function Home() {
           <span className="carousel-control-next-icon"></span>
         </button>
       </div>
-
-      {data ? (
+{/* data-display */}
+      {posts ? (
         <div className="d-flex flex-wrap justify-content-evenly">
           {" "}
-          {data.map((item) => {
+          {posts.map((item) => {
             return (
               <div className={styles.cardStyle} key={item.id}>
                 <img
@@ -211,10 +224,18 @@ function Home() {
                 <p className="card-title">{item.title}</p>
                 <span>Price:</span>
                 <span className="card-text">{item.price}</span>
-                <div className="d-flex justify-content-center ">
+                <div className="d-flex justify-content-center">
                 <Button title="Add to cart" onClick={() => onAdd(item)} />
                 <Button title="Remove to cart" onClick={() => onRemove(item)} />
                 </div>
+                <div  className="d-flex justify-content-center">
+                <Button title="Remove posts" onClick={() => dispatch(deleteposts(item.id))} />
+               <Link
+               to={`/update_page/${item.id}`}>
+               <Button title="Edit posts" onClick={() => dispatch((item.id))} />
+               </Link>
+               
+                  </div>
               </div>
             );
           })}{" "}
@@ -286,7 +307,9 @@ function Home() {
       <p>© 2022 SweetPick clohs Shop | Designed by vaishnavi chauhan
 </p>
       </div>
+   
     </div>
+    
   );
 }
 export default Home;

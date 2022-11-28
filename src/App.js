@@ -5,21 +5,24 @@ import Home from './pages/homePage/Home';
 import Signup from './pages/signupPage/Signup';
 import Login from './pages/loginPage/Login';
 import Cart from './pages/CartPage/Cart';
-import Themecontext from './pages/Context';
-
+import Update from './pages/updatePage/Update';
 
 function App() {
   return (
     <BrowserRouter>
     <div>
     <Routes>
+
     <Route path="/" element={<Protectroute/>}>
-    <Route path="/theam_page" element={<Themecontext/>}/>
-    <Route  path="/" element={<Home/>}/></Route>
+    <Route  path="/" element={<Home/>}/>
+    </Route>
+
     <Route  path="/login_page" element={<Login/>}/>
     <Route  path="/signup_page" element={<Signup/>}/>
-  
+    
     <Route path="/cart_page" element={<Cart/>}/>
+    <Route path="/update_page/:id" element={<Update/>}/>
+
     </Routes>
     </div>
   </BrowserRouter>

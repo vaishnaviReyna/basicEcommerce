@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
-import Themecontext from '../Context'
+import React from 'react'
+
 
 function Cart() {
-    const cartData = useContext(Themecontext)
+
   return (
     <div>
+      <h1>welcome billimg </h1>
     </div>
   )
 }
