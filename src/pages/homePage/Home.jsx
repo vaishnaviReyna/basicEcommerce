@@ -21,14 +21,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {Link} from "react-router-dom";
 
 function Home() {
-
   const  dispatch =useDispatch();
   const posts = useSelector((state)=>state.Reducer.posts)
-  console.log(posts);
-
   const navigate = useNavigate();
   const currntLogin = JSON.parse(localStorage.getItem("currntLogin"));
-  const [data, setData] = useState([]);
+  const currntUpdate = JSON.parse(localStorage.getItem("update"));
   const [cartItem, SetcartItem] = useState([]);
   const [tab, setTab] = useState(false);
 
@@ -36,13 +33,15 @@ function Home() {
     localStorage.removeItem("logedin");
     navigate("/login_page");
   };
+  
   useEffect(() => {
-    dispatch(getposts( ))
-    // fetch("https://fakestoreapi.com/products")
-    //   .then((res) => res.json())
-    //   .then((json) => setData(json));
-     
-  }, []);
+    if(!currntUpdate){
+      dispatch(getposts())
+    }else{
+      localStorage.removeItem("update");
+    }
+    
+  },[]);
 
   const onAdd = (item) => {
     const exist = cartItem.find((x) => x.id === item.id);
@@ -69,7 +68,7 @@ function Home() {
       SetcartItem(newCartItems);
     }
   };
-console.log("posts",posts);
+  console.log("posts",posts);
   return (
 
     <div>
@@ -135,7 +134,14 @@ console.log("posts",posts);
             >
               {cartItem.length}
             </button>
+{/* create post */}
 
+            <button
+              onClick={() =>navigate("/createpost_page")}
+            >
+           create post
+            </button>
+  {/* create post */}
           </div>
         </IconContext.Provider>
       </div>
@@ -232,9 +238,8 @@ console.log("posts",posts);
                 <Button title="Remove posts" onClick={() => dispatch(deleteposts(item.id))} />
                <Link
                to={`/update_page/${item.id}`}>
-               <Button title="Edit posts" onClick={() => dispatch((item.id))} />
+               <Button title="Edit posts" />
                </Link>
-               
                   </div>
               </div>
             );

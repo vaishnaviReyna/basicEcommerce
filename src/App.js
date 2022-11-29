@@ -6,6 +6,7 @@ import Signup from './pages/signupPage/Signup';
 import Login from './pages/loginPage/Login';
 import Cart from './pages/CartPage/Cart';
 import Update from './pages/updatePage/Update';
+import CreatePost from './pages/createpostPage/CreatePost';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
     
     <Route path="/cart_page" element={<Cart/>}/>
     <Route path="/update_page/:id" element={<Update/>}/>
+    <Route path="/createpost_page" element={<CreatePost/>}/>
 
     </Routes>
     </div>

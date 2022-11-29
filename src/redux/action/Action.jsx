@@ -17,10 +17,17 @@ export const getpost =(id) => async (dispatch)=>{
 }
 export const updatepost = (post) => async(dispatch) => {
   const result =await axios.put(`https://fakestoreapi.com/products/${post.id}`,post);
-  console.log("action", result.data);
   dispatch({
     type:"UPDATE_POST",
     payload:result.data,
+  })
+}
+
+export const createposts = (post)=>async (dispatch) => {
+  const results =  await axios.post(`https://fakestoreapi.com/products`,post);
+  dispatch({
+    type:"CREATE_POSTS",
+    payload:results.data
   })
 }
 
@@ -32,25 +39,3 @@ export const deleteposts = (id) => async (dispatch) => {
   })
 }
 
-// export const addtodo = (payload) => {
-//   return {
-//     type: "ADD_TODO",
-//     payload:{
-//         id:new Date().getTime().toString(),
-//         data:payload
-//     }
-//   };
-// };
-
-// export const deletetodo = (payload) => {
-//   return {
-//     type: "DELETE_TODO",
-//     payload
-//   };
-// };
-
-// export const deletealltodo = () => {
-//   return {
-//     type: "DELETE_ALL_TODO",
-//   };
-// };
