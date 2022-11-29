@@ -226,15 +226,21 @@ function Home() {
                   width="50px"
                   height="150px"
                 />
-                <span>Name:</span>
-                <p className="card-title">{item.title}</p>
-                <span>Price:</span>
-                <span className="card-text">{item.price}</span>
-                <div className="d-flex justify-content-center">
-                <Button title="Add to cart" onClick={() => onAdd(item)} />
-                <Button title="Remove to cart" onClick={() => onRemove(item)} />
+                <div className="d-flex px-2 ">
+                <p>Title:</p>
+                <p className="card-title">{(item.title).slice(0,25)}</p>
                 </div>
-                <div  className="d-flex justify-content-center">
+              <div className="d-flex px-2 ">
+              <span>Price:</span>
+              <span className="card-text">{item.price}</span>
+              </div>
+            
+                <div className="d-flex justify-content-center">
+                <Button title="+" onClick={() => onAdd(item)} />
+                <p>Add to cart</p>
+                <Button title="-" onClick={() => onRemove(item)} />
+                </div>
+                <div  className="d-flex justify-content-between">
                 <Button title="Remove posts" onClick={() => dispatch(deleteposts(item.id))} />
                <Link
                to={`/update_page/${item.id}`}>
